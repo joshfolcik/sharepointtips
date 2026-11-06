@@ -1,6 +1,7 @@
 Automatic Versioning
 
 Calculate versioning savings from an automatic versioning retroactive job---
+First gain access to the site for the account that will execute this reporting job.
 
 New-SPOSiteFileVersionExpirationReportJob -Identity "https://<companyname>.sharepoint.com/teams/<site>" -ReportUrl "https://<companyname>.sharepoint.com/teams/<site>/Shared%20Documents/versionreport/versionreport.csv"
 
