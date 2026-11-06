@@ -1,0 +1,20 @@
+Automatic Versioning
+
+Calculate versioning savings from an automatic versioning retroactive job---
+
+New-SPOSiteFileVersionExpirationReportJob -Identity "https://<companyname>.sharepoint.com/teams/<site>" -ReportUrl "https://<companyname>.sharepoint.com/teams/<site>/Shared%20Documents/versionreport/versionreport.csv"
+
+DO NOT attempt to open the file, it should appear there almost immediately but if you touch it, it will lock the file and fail the job and you'll have to re-run.
+
+Check the status before trying to open it.
+
+Get-SPOSiteFileVersionExpirationReportJobProgress -Identity "https://<companyname>.sharepoint.com/teams/<site>" -ReportUrl "https://<companyname>.sharepoint.com/teams/<site>/Shared%20Documents/versionreport/versionreport.csv"
+
+
+Once you have this file, you'll see some columns in it, one of them is the expiration date of versions should automatic versioning have been set on them - use the current date and a simple excel filter to find out how many bytes would have been expired for dates in the past.
+
+Then to run a one time retroactive stamping of automatic versioning to existing versions against a whole site:
+
+New-SPOSiteFileVersionBatchDeleteJob -Identity "https://<companyname>.sharepoint.com/teams/<site>" -Automatic
+Check its status:
+Get-SPOSiteFileVersionBatchDeleteJobProgress -Identity "https://<companyname>.sharepoint.com/teams/<site>"
